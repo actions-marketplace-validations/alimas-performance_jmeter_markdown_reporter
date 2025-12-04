@@ -11,7 +11,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application
-COPY . .
+COPY . /app
 
 # Making main python file executable
 RUN chmod +x generate_report.py
@@ -23,5 +23,5 @@ RUN mkdir -p output
 ENV PYTHONUNBUFFERED=1
 
 # Command to run the script
-ENTRYPOINT ["python", "generate_report.py"]
+ENTRYPOINT ["python", "/app/generate_report.py"]
 CMD ["results.jtl", "output"]
